@@ -24,11 +24,22 @@ class Document: NSPersistentDocument {
         return true
     }
 
-    override func makeWindowControllers() {
+    override func makeWindowControllers()
+    {
+        let moc = self.managedObjectContext!
+        
         // Returns the Storyboard that contains your Document window.
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        let windowController = storyboard.instantiateControllerWithIdentifier("Document Window Controller") as! NSWindowController
-        self.addWindowController(windowController)
+        let storyboard          = NSStoryboard(name: "Main", bundle: nil)
+        let windowController    = storyboard.instantiateControllerWithIdentifier( "Document Window Controller" ) as! NSWindowController
+        let contentController   = windowController.contentViewController as! ViewController
+        
+        NSLog( "%@", self.managedObjectContext! )
+        
+        contentController.context = self.managedObjectContext!
+        
+        NSLog( "%@", contentController.context! )
+        
+        self.addWindowController( windowController )
     }
 
 }
