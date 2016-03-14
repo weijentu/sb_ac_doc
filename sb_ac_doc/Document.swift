@@ -33,9 +33,9 @@ class Document: NSPersistentDocument {
         let windowController    = storyboard.instantiateControllerWithIdentifier( "Document Window Controller" ) as! NSWindowController
         let contentController   = windowController.contentViewController as! ViewController
         
-        NSLog( "%@", self.managedObjectContext! )
+        NSLog( "%@", moc )
         
-        contentController.context = self.managedObjectContext!
+//        contentController.context = self.managedObjectContext!
         
         NSLog( "%@", contentController.context! )
         

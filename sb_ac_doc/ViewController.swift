@@ -10,7 +10,12 @@ import Cocoa
 
 class ViewController: NSViewController
 {
-    var context: NSManagedObjectContext?
+    var context: NSManagedObjectContext? {
+        guard let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate else {
+            return nil
+        }
+        return appDelegate.managedObjectContext
+    }
     
     override func viewDidLoad()
     {
